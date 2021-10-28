@@ -1,0 +1,47 @@
+spring:
+   application:
+    name: api-gateway
+  cloud:
+    gateway:
+      globalcors:
+        default-filters:
+          - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            allowedHeaders: "*"
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 5s
+
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 2
+    lease-renewal-interval-in-seconds: 1
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://${EUREKA_HOST}:8761/eureka}
+    healthcheck:
+      enabled: true
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+    health:
+      enabled: true
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health, gateway, info
