@@ -1,7 +1,7 @@
-spring:
+gateway.spring:
    application:
     name: api-gateway
-  cloud:
+   cloud:
     gateway:
       globalcors:
         default-filters:
@@ -23,7 +23,7 @@ spring:
         connect-timeout: 1000
         response-timeout: 5s
 
-eureka:
+gateway.eureka:
   instance:
     lease-expiration-duration-in-seconds: 2
     lease-renewal-interval-in-seconds: 1
@@ -33,7 +33,7 @@ eureka:
     healthcheck:
       enabled: true
 
-management:
+gateway.management:
   endpoint:
     gateway:
       enabled: true
